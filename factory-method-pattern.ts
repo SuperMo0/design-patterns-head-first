@@ -5,9 +5,9 @@
  * every time we need a different object creation behavior we extend this class
  * and implement it's create method
  *
- * now this might seem like the simple factory method but there is a difference
- * in this method we don't use composition, the class that we are extending is not another ObjectCreator interface
- * like in the simple factory pattern
+ * now this might seem similar to the abstract factory method but there is a difference
+ * in this method we don't use composition, and the class that we are extending is not an abstract factory
+ *
  *
  */
 type PizzaType = "cheese" | "chickn";
