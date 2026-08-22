@@ -3,8 +3,10 @@
  * `simple factory` is when we create our objects using another concrete object -lets call it `ObjectCreator`-
  * and we use composotion to compose that `ObjectCreator` object with the class that needs it to create objects
  *
- * in the following examples the PizzaStore can be composed with any PizzaCreator
- * in this example we have AmericanPizzaCreator but we might have ItalinPizzaCreator also
+ * in the following examples the PizzaStore will be composed with the AmericanPizzaFactory
+ *
+ * seems like the only differen between this andthe abstract factory method is that here our factory doesn't
+ * implement anything
  */
 
 type PizzaType = "cheese" | "chickn";
@@ -17,19 +19,15 @@ abstract class Pizza {
     console.log(this.description);
   }
 }
-interface PizzaCreator {
-  create(type: PizzaType): Pizza;
-}
-
-class AmericanCheesePiza extends Pizza {}
-class AmericanChickenPiza extends Pizza {}
-class AmericanPizzaCreator implements PizzaCreator {
+class CheesePiza extends Pizza {}
+class ChickenPiza extends Pizza {}
+class PizzaCreator {
   // this is our ObjectCreator
   create(type: PizzaType): Pizza {
     if (type == "cheese") {
-      return new AmericanCheesePiza("American Cheese Pizza");
+      return new CheesePiza("Cheese Pizza");
     } else if (type == "chickn") {
-      return new AmericanChickenPiza("American Chicken Pizza");
+      return new ChickenPiza("Chicken Pizza");
     } else {
       throw Error("Unknown pizza!");
     }
@@ -49,5 +47,5 @@ class PizzaStore {
   }
 }
 
-const AmericanPizzaStore = new PizzaStore(new AmericanPizzaCreator());
+const AmericanPizzaStore = new PizzaStore(new PizzaCreator());
 AmericanPizzaStore.createPizza("cheese");
