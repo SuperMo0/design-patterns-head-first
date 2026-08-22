@@ -7,7 +7,7 @@
  * in this example we have AmericanPizzaCreator but we might have ItalinPizzaCreator also
  */
 
-type PizzaTypes = "cheese" | "chickn";
+type PizzaType = "cheese" | "chickn";
 abstract class Pizza {
   description: string;
   constructor(description: string) {
@@ -18,14 +18,14 @@ abstract class Pizza {
   }
 }
 interface PizzaCreator {
-  create(type: PizzaTypes): Pizza;
+  create(type: PizzaType): Pizza;
 }
 
 class AmericanCheesePiza extends Pizza {}
 class AmericanChickenPiza extends Pizza {}
 class AmericanPizzaCreator implements PizzaCreator {
   // this is our ObjectCreator
-  create(type: PizzaTypes): Pizza {
+  create(type: PizzaType): Pizza {
     if (type == "cheese") {
       return new AmericanCheesePiza("American Cheese Pizza");
     } else if (type == "chickn") {
@@ -42,7 +42,7 @@ class PizzaStore {
     this.pizzaCreator = pizzaCreator;
   }
 
-  createPizza(type: PizzaTypes) {
+  createPizza(type: PizzaType) {
     // this class doesn't know or care what creator he is dealing with
     const pizza = this.pizzaCreator.create(type);
     pizza.serve();
