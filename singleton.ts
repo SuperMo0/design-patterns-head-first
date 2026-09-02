@@ -29,12 +29,3 @@ class UserSettings{
 }
 
 UserSettings.getUserSettings();
-
-
-
-
-
-
-
-
-
