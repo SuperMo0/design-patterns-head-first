@@ -20,111 +20,111 @@
 
 type CupSize = "small" | "large" | "xlarge";
 abstract class Beverage {
-  #description: string;
-  #size: CupSize;
-  constructor(description: string, size: CupSize) {
-    this.#description = description;
-    this.#size = size;
-  }
-  get description() {
-    return this.#description + " " + this.#size;
-  }
-  set description(description) {
-    this.#description = description;
-  }
+	#description: string;
+	#size: CupSize;
+	constructor(description: string, size: CupSize) {
+		this.#description = description;
+		this.#size = size;
+	}
+	get description() {
+		return this.#description + " " + this.#size;
+	}
+	set description(description) {
+		this.#description = description;
+	}
 
-  get size() {
-    return this.#size;
-  }
-  set size(size: CupSize) {
-    this.#size = this.size;
-  }
-  abstract cost(): number;
+	get size() {
+		return this.#size;
+	}
+	set size(size: CupSize) {
+		this.#size = this.size;
+	}
+	abstract cost(): number;
 }
 
 class Latte extends Beverage {
-  constructor(size: CupSize) {
-    super("Latte", size);
-  }
-  cost(): number {
-    switch (this.size) {
-      case "small": {
-        return 12;
-      }
-      case "large": {
-        return 14;
-      }
-      case "xlarge": {
-        return 15;
-      }
-    }
-  }
+	constructor(size: CupSize) {
+		super("Latte", size);
+	}
+	cost(): number {
+		switch (this.size) {
+			case "small": {
+				return 12;
+			}
+			case "large": {
+				return 14;
+			}
+			case "xlarge": {
+				return 15;
+			}
+		}
+	}
 }
 
 class Espresso extends Beverage {
-  constructor(size: CupSize) {
-    super("Espresso", size);
-  }
-  cost(): number {
-    switch (this.size) {
-      case "small": {
-        return 12;
-      }
-      case "large": {
-        return 14;
-      }
-      case "xlarge": {
-        return 15;
-      }
-    }
-  }
+	constructor(size: CupSize) {
+		super("Espresso", size);
+	}
+	cost(): number {
+		switch (this.size) {
+			case "small": {
+				return 12;
+			}
+			case "large": {
+				return 14;
+			}
+			case "xlarge": {
+				return 15;
+			}
+		}
+	}
 }
 
 abstract class BevarageDecorator extends Beverage {
-  beverageComponent: Beverage;
+	beverageComponent: Beverage;
 
-  constructor(beverage: Beverage, description: string) {
-    super(beverage.description + " + " + description, beverage.size);
-    this.beverageComponent = beverage;
-  }
+	constructor(beverage: Beverage, description: string) {
+		super(beverage.description + " + " + description, beverage.size);
+		this.beverageComponent = beverage;
+	}
 }
 class MochaDecorator extends BevarageDecorator {
-  constructor(beverage: Beverage) {
-    super(beverage, "Mocha");
-  }
-  cost(): number {
-    switch (this.size) {
-      case "small": {
-        return this.beverageComponent.cost() + 1;
-      }
-      case "large": {
-        return this.beverageComponent.cost() + 2;
-      }
-      case "xlarge": {
-        return this.beverageComponent.cost() + 3;
-      }
-    }
-  }
+	constructor(beverage: Beverage) {
+		super(beverage, "Mocha");
+	}
+	cost(): number {
+		switch (this.size) {
+			case "small": {
+				return this.beverageComponent.cost() + 1;
+			}
+			case "large": {
+				return this.beverageComponent.cost() + 2;
+			}
+			case "xlarge": {
+				return this.beverageComponent.cost() + 3;
+			}
+		}
+	}
 }
 
 class WhipDecorator extends BevarageDecorator {
-  constructor(beverage: Beverage) {
-    super(beverage, "Whip");
-    this.beverageComponent = beverage;
-  }
-  cost(): number {
-    switch (this.size) {
-      case "small": {
-        return this.beverageComponent.cost() + 1;
-      }
-      case "large": {
-        return this.beverageComponent.cost() + 2;
-      }
-      case "xlarge": {
-        return this.beverageComponent.cost() + 3;
-      }
-    }
-  }
+	constructor(beverage: Beverage) {
+		super(beverage, "Whip");
+		this.beverageComponent = beverage;
+	}
+	cost(): number {
+		switch (this.size) {
+			case "small": {
+				return this.beverageComponent.cost() + 1;
+			}
+			case "large": {
+				return this.beverageComponent.cost() + 2;
+			}
+			case "xlarge": {
+				return this.beverageComponent.cost() + 3;
+			}
+		}
+	}
 }
 
 const cup = new WhipDecorator(new MochaDecorator(new Latte("large")));

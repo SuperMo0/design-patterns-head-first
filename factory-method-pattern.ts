@@ -13,41 +13,41 @@
 type PizzaType = "cheese" | "chickn";
 
 abstract class Pizza {
-  description: string;
-  constructor(description: string) {
-    this.description = description;
-  }
-  serve() {
-    console.log(this.description);
-  }
+	description: string;
+	constructor(description: string) {
+		this.description = description;
+	}
+	serve() {
+		console.log(this.description);
+	}
 }
 
 abstract class PizzaStore {
-  constructor() {}
+	constructor() {}
 
-  order(type: PizzaType) {
-    const pizza = this.create(type);
-    pizza.serve();
-  }
+	order(type: PizzaType) {
+		const pizza = this.create(type);
+		pizza.serve();
+	}
 
-  abstract create(type: PizzaType): Pizza;
+	abstract create(type: PizzaType): Pizza;
 }
 
 class AmericanCheesePiza extends Pizza {}
 class AmericanChickenPiza extends Pizza {}
 class AmericanPizzaStore extends PizzaStore {
-  constructor() {
-    super();
-  }
+	constructor() {
+		super();
+	}
 
-  create(type: PizzaType): Pizza {
-    // the subclass is responsible for the implementation of the create method
-    if (type == "cheese") {
-      return new AmericanCheesePiza("American Cheese");
-    } else if (type == "chickn") {
-      return new AmericanChickenPiza("American Chicken Pizza");
-    } else throw Error("Unknown Pizza!");
-  }
+	create(type: PizzaType): Pizza {
+		// the subclass is responsible for the implementation of the create method
+		if (type == "cheese") {
+			return new AmericanCheesePiza("American Cheese");
+		} else if (type == "chickn") {
+			return new AmericanChickenPiza("American Chicken Pizza");
+		} else throw Error("Unknown Pizza!");
+	}
 }
 
 const americanPizzaStore: PizzaStore = new AmericanPizzaStore();

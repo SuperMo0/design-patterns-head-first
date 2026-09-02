@@ -19,48 +19,48 @@
 
 type PizzaType = "cheese" | "chickn";
 abstract class Pizza {
-  description: string;
-  constructor(description: string) {
-    this.description = description;
-  }
-  serve() {
-    console.log(this.description);
-  }
+	description: string;
+	constructor(description: string) {
+		this.description = description;
+	}
+	serve() {
+		console.log(this.description);
+	}
 }
 class CheesePiza extends Pizza {}
 class ChickenPiza extends Pizza {}
 
 abstract class PizzaFactory {
-  constructor() {}
-  abstract create(type: PizzaType): Pizza;
-  // usually we go for this pattern because we have many factory methods
-  // but here in this silly example we only have one factory method so this abstract class might make no sense
-  // in reality you might have more and more factory methods so this abstract class will make more sense
+	constructor() {}
+	abstract create(type: PizzaType): Pizza;
+	// usually we go for this pattern because we have many factory methods
+	// but here in this silly example we only have one factory method so this abstract class might make no sense
+	// in reality you might have more and more factory methods so this abstract class will make more sense
 }
 class AmericanPizzaFactory implements PizzaFactory {
-  // this is our ObjectCreator
-  create(type: PizzaType): Pizza {
-    if (type == "cheese") {
-      return new CheesePiza("American Cheese Pizza");
-    } else if (type == "chickn") {
-      return new ChickenPiza("American Chicken Pizza");
-    } else {
-      throw Error("Unknown pizza!");
-    }
-  }
+	// this is our ObjectCreator
+	create(type: PizzaType): Pizza {
+		if (type == "cheese") {
+			return new CheesePiza("American Cheese Pizza");
+		} else if (type == "chickn") {
+			return new ChickenPiza("American Chicken Pizza");
+		} else {
+			throw Error("Unknown pizza!");
+		}
+	}
 }
 class PizzaStore {
-  pizzaFactory: PizzaFactory;
+	pizzaFactory: PizzaFactory;
 
-  constructor(pizzaCreator: PizzaFactory) {
-    this.pizzaFactory = pizzaCreator;
-  }
+	constructor(pizzaCreator: PizzaFactory) {
+		this.pizzaFactory = pizzaCreator;
+	}
 
-  createPizza(type: PizzaType) {
-    // this class doesn't know or care what creator he is dealing with
-    const pizza = this.pizzaFactory.create(type);
-    pizza.serve();
-  }
+	createPizza(type: PizzaType) {
+		// this class doesn't know or care what creator he is dealing with
+		const pizza = this.pizzaFactory.create(type);
+		pizza.serve();
+	}
 }
 
 const AmericanPizzaStore = new PizzaStore(new AmericanPizzaFactory());

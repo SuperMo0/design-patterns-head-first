@@ -11,40 +11,40 @@
 
 type PizzaType = "cheese" | "chickn";
 abstract class Pizza {
-  description: string;
-  constructor(description: string) {
-    this.description = description;
-  }
-  serve() {
-    console.log(this.description);
-  }
+	description: string;
+	constructor(description: string) {
+		this.description = description;
+	}
+	serve() {
+		console.log(this.description);
+	}
 }
 class CheesePiza extends Pizza {}
 class ChickenPiza extends Pizza {}
 class PizzaCreator {
-  // this is our ObjectCreator
-  create(type: PizzaType): Pizza {
-    if (type == "cheese") {
-      return new CheesePiza("Cheese Pizza");
-    } else if (type == "chickn") {
-      return new ChickenPiza("Chicken Pizza");
-    } else {
-      throw Error("Unknown pizza!");
-    }
-  }
+	// this is our ObjectCreator
+	create(type: PizzaType): Pizza {
+		if (type == "cheese") {
+			return new CheesePiza("Cheese Pizza");
+		} else if (type == "chickn") {
+			return new ChickenPiza("Chicken Pizza");
+		} else {
+			throw Error("Unknown pizza!");
+		}
+	}
 }
 class PizzaStore {
-  pizzaCreator: PizzaCreator;
+	pizzaCreator: PizzaCreator;
 
-  constructor(pizzaCreator: PizzaCreator) {
-    this.pizzaCreator = pizzaCreator;
-  }
+	constructor(pizzaCreator: PizzaCreator) {
+		this.pizzaCreator = pizzaCreator;
+	}
 
-  createPizza(type: PizzaType) {
-    // this class doesn't know or care what creator he is dealing with
-    const pizza = this.pizzaCreator.create(type);
-    pizza.serve();
-  }
+	createPizza(type: PizzaType) {
+		// this class doesn't know or care what creator he is dealing with
+		const pizza = this.pizzaCreator.create(type);
+		pizza.serve();
+	}
 }
 
 const AmericanPizzaStore = new PizzaStore(new PizzaCreator());

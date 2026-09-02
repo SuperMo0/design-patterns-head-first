@@ -18,85 +18,85 @@
  */
 
 interface QuackBehavior {
-  quack: () => void;
+	quack: () => void;
 }
 interface FlyBehavior {
-  fly: () => void;
+	fly: () => void;
 }
 
 class Quack implements QuackBehavior {
-  quack() {
-    console.log("Quack!");
-  }
+	quack() {
+		console.log("Quack!");
+	}
 }
 
 class Squeak implements QuackBehavior {
-  quack() {
-    console.log("Squeak!");
-  }
+	quack() {
+		console.log("Squeak!");
+	}
 }
 
 class MuteQuack implements QuackBehavior {
-  quack() {
-    console.log("<<Silence>>");
-  }
+	quack() {
+		console.log("<<Silence>>");
+	}
 }
 
 class FlyWithWings implements FlyBehavior {
-  fly() {
-    console.log("Flying with my wings!");
-  }
+	fly() {
+		console.log("Flying with my wings!");
+	}
 }
 
 class FlyNoWay implements FlyBehavior {
-  fly() {
-    console.log("I can't fly :(");
-  }
+	fly() {
+		console.log("I can't fly :(");
+	}
 }
 
 class FlyRocketPowered implements FlyBehavior {
-  fly() {
-    console.log("I'm flying with rocket!");
-  }
+	fly() {
+		console.log("I'm flying with rocket!");
+	}
 }
 class Duck {
-  #quackBehavior: QuackBehavior;
-  #flyBehavior: FlyBehavior;
-  constructor(quackBehavior: QuackBehavior, flyBehavior: FlyBehavior) {
-    this.#quackBehavior = quackBehavior;
-    this.#flyBehavior = flyBehavior;
-  }
-  protected set quackBehavior(quackBehavior: QuackBehavior) {
-    this.#quackBehavior = quackBehavior;
-  }
+	#quackBehavior: QuackBehavior;
+	#flyBehavior: FlyBehavior;
+	constructor(quackBehavior: QuackBehavior, flyBehavior: FlyBehavior) {
+		this.#quackBehavior = quackBehavior;
+		this.#flyBehavior = flyBehavior;
+	}
+	protected set quackBehavior(quackBehavior: QuackBehavior) {
+		this.#quackBehavior = quackBehavior;
+	}
 
-  protected get quackBehavior() {
-    return this.#quackBehavior;
-  }
+	protected get quackBehavior() {
+		return this.#quackBehavior;
+	}
 
-  protected set flyBehavior(flyBehavior: FlyBehavior) {
-    this.#flyBehavior = flyBehavior;
-  }
+	protected set flyBehavior(flyBehavior: FlyBehavior) {
+		this.#flyBehavior = flyBehavior;
+	}
 
-  protected get flyBehavior() {
-    return this.#flyBehavior;
-  }
+	protected get flyBehavior() {
+		return this.#flyBehavior;
+	}
 
-  performFLy() {
-    this.#flyBehavior.fly();
-  }
-  performQuack() {
-    this.#quackBehavior.quack();
-  }
-  swim() {
-    console.log("All docs float, even decoys!");
-  }
+	performFLy() {
+		this.#flyBehavior.fly();
+	}
+	performQuack() {
+		this.#quackBehavior.quack();
+	}
+	swim() {
+		console.log("All docs float, even decoys!");
+	}
 }
 
 class MalardDuck extends Duck {
-  constructor() {
-    super(new Quack(), new FlyWithWings());
-  }
+	constructor() {
+		super(new Quack(), new FlyWithWings());
+	}
 }
 
 const malardDuck = new MalardDuck();
@@ -105,9 +105,9 @@ malardDuck.performQuack();
 malardDuck.swim();
 
 class ModelDuck extends Duck {
-  constructor() {
-    super(new Quack(), new FlyNoWay());
-  }
+	constructor() {
+		super(new Quack(), new FlyNoWay());
+	}
 }
 
 const modelDuck = new ModelDuck();
